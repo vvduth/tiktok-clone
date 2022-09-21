@@ -5,6 +5,9 @@ import Link from "next/link";
 import { AiFillHome, AiOutlineMenu } from "react-icons/ai";
 import { ImCancelCircle } from "react-icons/im";
 import GoogleLogin from "react-google-login";
+import Discover from "./Discover";
+import SuggestedAccount from "./SuggestedAccount";
+import Footer from "./Footer";
 
 const Sidebar: NextPage = () => {
   const [showSideBar, setShowSidebar] = useState<boolean>(true);
@@ -57,9 +60,9 @@ const Sidebar: NextPage = () => {
               </div>
             </div>
           )}
-          Discover 
-          SuggestedAccount
-          Footer
+          <Discover />
+          <SuggestedAccount />
+          <Footer />
         </div>
       )}
     </div>
