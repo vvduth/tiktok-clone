@@ -23,6 +23,8 @@ const Details = ({ postDetails }: Iprops) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const router = useRouter();
   const {userProfile}:any = useAuthStore()
+  const [comment, setComment] = useState('')
+  const [isPostingcomment, setisPostingComment] = useState(false)
 
   const onVideoPress = () => {
     if (playing) {
@@ -51,7 +53,21 @@ const Details = ({ postDetails }: Iprops) => {
       setPost({...post, likes: data.likes})
     }
   }
+  
+  const addComment = async (e: any) => {
+    e.preventDefault() ; 
+    if (userProfile && comment)  {
+      setisPostingComment(true) ;
+      const {data} = await axios.put(`${BASE_URL}/api/post/${post._id}`, {
+        userId: userProfile._id, 
+        comment
+      })  
 
+      setPost({...post, comments: data.comments})
+      setComment("") ;
+      setisPostingComment(false) ;
+    }
+  } 
   if (!post) return null;
   return (
     <div className="flex w-full absolute left-0 top-0 bg-white flex-wrap lg:flex-nowrap">
@@ -138,7 +154,13 @@ const Details = ({ postDetails }: Iprops) => {
             }
 
           </div>
-          <Comments />
+          <Comments 
+            comment={comment}
+            setComment={setComment}
+            addComment={addComment}
+            isPostingComment = {isPostingcomment}
+            comments={post.comments}
+          />
         </div>
       </div>
     </div>
