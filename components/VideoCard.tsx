@@ -72,12 +72,12 @@ const VideoCard: NextPage<Iprops> = ({ post }: Iprops) => {
           }}
           className="rounded-3xl"
         >
-          <Link href="/">
+          <Link href={`/detail/${post._id}`}>
             <video
               src={post.video.asset.url}
               loop
               ref={videoRef}
-              className="lg:w[600px] h[300px] md:h-[400px] lg:h[530px] w-[300px] rounded-2xl cursor-pointer bg-gray-100"
+              className="lg:w-[700px] h[300px] md:h-[400px] lg:h[530px] w-[300px] rounded-2xl cursor-pointer bg-gray-100"
             ></video>
           </Link>
           {isHover && (
