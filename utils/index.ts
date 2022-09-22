@@ -20,3 +20,4 @@ export const createOrGetUser = async (response: any, addUser: any) => {
 
   await axios.post(`${BASE_URL}/api/auth`, user) ; 
 };
+//
